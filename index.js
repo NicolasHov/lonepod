@@ -4,7 +4,7 @@
 
 var PLAY, LOCK = false;
 
-window.onload = function () {
+function startAnalysing() {
   var audio, analyser, audioContext, sourceNode, stream, requestId;
 
   var svg = document.getElementById("svg"),
@@ -127,11 +127,10 @@ window.onload = function () {
 };
 
 
-// Pen "VU Meter from MIC Input" from Travis Holliday
-// https://codepen.io/travisholliday/pen/gyaJk
+function startRecording() {
+  // Pen "VU Meter from MIC Input" from Travis Holliday
+  // https://codepen.io/travisholliday/pen/gyaJk
 
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-if (navigator.getUserMedia) {
   navigator.getUserMedia({ audio: true }, function (stream) {
       audioContext = new AudioContext();
       analyser = audioContext.createAnalyser();
@@ -204,6 +203,4 @@ if (navigator.getUserMedia) {
       console.log("The following error occured: " + err.name);
     }
   );
-} else {
-  console.log("getUserMedia not supported");
 }
